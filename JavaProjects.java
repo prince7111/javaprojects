@@ -1,6 +1,9 @@
 package javaprojects;
 
 import com.sun.source.doctree.SystemPropertyTree;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class JavaProjects {
@@ -74,8 +77,43 @@ public class JavaProjects {
         idx++;
     }
     System.out.println(name +" = "+"V"+"("+vovel+")"+"&"+"C"+"("+conse+")");
+}
          
-    
+    public int romanToInt(String s) {
+        Map<Character, Integer> values = new HashMap<>();
+        values.put('I', 1);
+        values.put('V', 5);
+        values.put('X', 10);
+        values.put('L', 50);
+        values.put('C', 100);
+        values.put('D', 500);
+        values.put('M', 1000);
+
+        int result = 0;
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            int current = values.get(s.charAt(i));
+            
+            // अगले कैरेक्टर के लिए चेक करें
+            if (i < n - 1) {
+                int next = values.get(s.charAt(i + 1));
+                
+                // घटाव का नियम: यदि वर्तमान मान अगले से कम है (जैसे IV, IX)
+                if (current < next) {
+                    result += (next - current);
+                    i++; // अगले कैरेक्टर को छोड़ दें
+                } else {
+                    // सामान्य जोड़ का नियम (जैसे VI, LVIII)
+                    result += current;
+                }
+            } else {
+                // अंतिम कैरेक्टर को हमेशा जोड़ें
+                result += current;
+            }
+        }
+        return result;
+    }
     public static void main(String args[]){
         System.err.println();   
     }
