@@ -224,8 +224,31 @@ public class JavaProjects {
                              studentId, name, daysPresent, totalClasses, getAttendancePercentage());
     }
 }
+
     public static void main(String args[]){
-        System.err.println();  
+        System.err.println("projects pendng");  
+        
+        // 1. Define the character
+        char characterA = 'A';
+        char character5 = '5';
+        char character_sym = '$';
+        
+        // 2. Perform the type cast to int
+        // Java automatically uses the character's Unicode (ASCII) value
+        int asciiValueA = (int) characterA;
+        int asciiValue5 = (int) character5;
+        int asciiValueSym = (int) character_sym;
+
+        // 3. Print the results
+        System.out.println("The character is: " + characterA + ", and its ASCII value is: " + asciiValueA);
+        System.out.println("The character is: " + character5 + ", and its ASCII value is: " + asciiValue5);
+        System.out.println("The character is: " + character_sym + ", and its ASCII value is: " + asciiValueSym);
+
+        // Example of direct conversion in an expression
+        int sum = 'a' + 1; // 'a' is 97
+        System.out.println("\n'a' + 1 = " + sum); // Output will be 98
+
+
        
 
 
