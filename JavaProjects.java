@@ -58,7 +58,10 @@ public class JavaProjects {
         System.err.print(digit[lastDig] + " ");
         
     }
-  
+    public static boolean isNaturalNumber(int n) {
+        return (n>=0);       
+    }
+   
     
     public static void main(String args[]){
         System.err.println();   
