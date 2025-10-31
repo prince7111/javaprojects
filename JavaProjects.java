@@ -2,6 +2,7 @@ package javaprojects;
 
 import com.sun.source.doctree.SystemPropertyTree;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -180,10 +181,59 @@ public class JavaProjects {
         }
         return shuffledPassword.toString();
     }
-    public static void main(String args[]){
-        System.err.println();   
+    public class Student implements Serializable {
+    private String studentId;
+    private String name;
+    private int daysPresent;
+    private int totalClasses;
+
+    // Constructor
+    public Student(String studentId, String name) {
+        this.studentId = studentId;
+        this.name = name;
+        this.daysPresent = 0;
+        this.totalClasses = 0;
+    }
+
+    // Getters and Setters
+    public String getStudentId() { return studentId; }
+    public String getName() { return name; }
+    public int getDaysPresent() { return daysPresent; }
+    public int getTotalClasses() { return totalClasses; }
+
+    // Methods to update attendance
+    public void markPresent() {
+        this.daysPresent++;
+        this.totalClasses++;
     }
     
+    public void markAbsent() {
+        this.totalClasses++;
+    }
+
+    public double getAttendancePercentage() {
+        if (totalClasses == 0) {
+            return 0.0;
+        }
+        return (double) daysPresent / totalClasses * 100;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %s, Name: %s, Present: %d/%d (%.2f%%)", 
+                             studentId, name, daysPresent, totalClasses, getAttendancePercentage());
+    }
 }
+    public static void main(String args[]){
+        System.err.println();  
+       
+
+
+    }
+} 
+
+
+    
+
 
 
