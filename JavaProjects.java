@@ -49,7 +49,16 @@ public class JavaProjects {
         return reversString;
     }
       
+     public static void numTOWord(String digit[],int number){
+        if(number ==0){
+            return;
+        }
+        int lastDig = number % 10;
+        numTOWord(digit, number/10);
+        System.err.print(digit[lastDig] + " ");
         
+    }
+  
     
     public static void main(String args[]){
         System.err.println();   
