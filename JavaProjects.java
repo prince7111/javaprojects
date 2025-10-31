@@ -38,7 +38,19 @@ public class JavaProjects {
         }
     }
    
-  
+   public static String revrseStr(String str ,int idx){
+        String reversString ="";
+        
+        while(idx>=0){
+            char curChar = str.charAt(idx);
+            reversString+=curChar;
+            idx--;
+        }
+        return reversString;
+    }
+      
+        
+    
     public static void main(String args[]){
         System.err.println();   
     }
