@@ -2,7 +2,11 @@ package javaprojects;
 
 import com.sun.source.doctree.SystemPropertyTree;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -113,6 +117,68 @@ public class JavaProjects {
             }
         }
         return result;
+    }
+    // Define the character sets for different types of characters
+    private static final String LOWER_CASE = "abcdefghijklmnopqrstuvwxyz";
+    private static final String UPPER_CASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String DIGITS = "0123456789";
+    private static final String SPECIAL_CHARS = "!@#$%^&*()-_+=<>?";
+    
+    // Combine all character sets for general random characters
+    private static final String ALL_CHARS = LOWER_CASE + UPPER_CASE + DIGITS + SPECIAL_CHARS;
+
+    private static SecureRandom random = new SecureRandom();
+
+    /**
+     * Generates a strong, random password of a specified length.
+     * It guarantees at least one character from each required type.
+     *
+     * @param length The desired length of the password.
+     * @return A randomly generated password string.
+     */
+    public static String generatePassword(int length) {
+        if (length < 4) {
+            throw new IllegalArgumentException("Password length must be at least 4 to guarantee all character types.");
+        }
+
+        StringBuilder password = new StringBuilder(length);
+        
+        // 1. Ensure at least one character from each required set
+        // This makes the password meet most security policies
+        password.append(getRandomChar(UPPER_CASE));
+        password.append(getRandomChar(LOWER_CASE));
+        password.append(getRandomChar(DIGITS));
+        password.append(getRandomChar(SPECIAL_CHARS));
+
+        // 2. Fill the remaining length with random characters from ALL sets
+        for (int i = 4; i < length; i++) {
+            password.append(getRandomChar(ALL_CHARS));
+        }
+
+        // 3. Shuffle the characters to ensure the required characters 
+        // are not always in the same starting positions (e.g., A1b#...)
+        return shuffleString(password.toString());
+    }
+
+    // Helper method to get a random character from a given set
+    private static char getRandomChar(String charSet) {
+        int randomIndex = random.nextInt(charSet.length());
+        return charSet.charAt(randomIndex);
+    }
+    
+    // Helper method to shuffle the final password string
+    private static String shuffleString(String s) {
+        List<Character> chars = new ArrayList<>();
+        for (char c : s.toCharArray()) {
+            chars.add(c);
+        }
+        Collections.shuffle(chars, random); // Use SecureRandom for shuffling
+
+        StringBuilder shuffledPassword = new StringBuilder(s.length());
+        for (char c : chars) {
+            shuffledPassword.append(c);
+        }
+        return shuffledPassword.toString();
     }
     public static void main(String args[]){
         System.err.println();   
