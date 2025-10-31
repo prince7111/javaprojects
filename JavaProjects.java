@@ -61,7 +61,20 @@ public class JavaProjects {
     public static boolean isNaturalNumber(int n) {
         return (n>=0);       
     }
-   
+    public static void countConsnVovels(String name,int idx) {
+        int vovel = 0;
+        int conse = 0;
+    while (idx<name.length()) {       
+        char ch = name.charAt(idx);
+        if((ch =='a')||(ch=='e')||(ch=='i')||(ch =='o')||(ch=='u')){
+        vovel++;
+        }else{
+            conse++;
+        }
+        idx++;
+    }
+    System.out.println(name +" = "+"V"+"("+vovel+")"+"&"+"C"+"("+conse+")");
+         
     
     public static void main(String args[]){
         System.err.println();   
