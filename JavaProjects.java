@@ -248,7 +248,7 @@ public class JavaProjects {
         int sum = 'a' + 1; // 'a' is 97
         System.out.println("\n'a' + 1 = " + sum); // Output will be 98
 
-
+        System.out.println();
        
 
 
